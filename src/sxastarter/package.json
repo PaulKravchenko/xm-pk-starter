@@ -4,7 +4,7 @@
   "version": "20.1.0-canary",
   "private": true,
   "config": {
-    "appName": "sxastarter",
+    "appName": "pk-test-site-basic",
     "rootPlaceholders": [
       "jss-main"
     ],
