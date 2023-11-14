@@ -28,7 +28,7 @@ import { getItems, watchItems } from './utils';
 */
 
 const componentFactoryPath = path.resolve('src/temp/componentFactory.ts');
-const componentRootPath = 'src/components';
+const componentRootPaths = ['src/components', 'src/custom-components'];
 
 const isWatch = process.argv.some((arg) => arg === '--watch');
 
@@ -40,9 +40,11 @@ const isWatch = process.argv.some((arg) => arg === '--watch');
  * removed components at runtime.
  */
 function watchComponentFactory() {
-  console.log(`Watching for changes to component factory sources in ${componentRootPath}...`);
+  componentRootPaths.forEach(function(componentRootPath) {
+    console.log(`Watching for changes to component factory sources in ${componentRootPath}...`);
 
-  watchItems(componentRootPath, writeComponentFactory);
+    watchItems(componentRootPath, writeComponentFactory);
+  });
 }
 
 /**
@@ -69,7 +71,7 @@ function writeComponentFactory() {
    *  }
    */
   const packages: PackageDefinition[] = [];
-  const components = getComponentList(componentRootPath);
+  const components = getComponentList(componentRootPaths);
 
   components.unshift(...packages);
 
@@ -80,16 +82,19 @@ function writeComponentFactory() {
   });
 }
 
-function getComponentList(path: string): (PackageDefinition | ComponentFile)[] {
-  const components = getItems<PackageDefinition | ComponentFile>({
-    path,
-    resolveItem: (path, name) => ({
-      path: `${path}/${name}`,
-      componentName: name,
-      moduleName: name.replace(/[^\w]+/g, ''),
-    }),
-    cb: (name) => console.debug(`Registering JSS component ${name}`),
+function getComponentList(paths: string[]): (PackageDefinition | ComponentFile)[] {  
+  const components = paths.flatMap(function (path){
+      return getItems<PackageDefinition | ComponentFile>({
+      path,
+      resolveItem: (path, name) => ({
+        path: `${path}/${name}`,
+        componentName: name,
+        moduleName: name.replace(/[^\w]+/g, ''),
+      }),
+      cb: (name) => console.debug(`Registering JSS component ${name}`),
+    });    
   });
+ 
 
   return components;
 }
