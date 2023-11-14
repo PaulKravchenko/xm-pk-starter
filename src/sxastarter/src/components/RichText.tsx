@@ -14,17 +14,17 @@ export type RichTextProps = {
   fields: Fields;
 };
 
-type RichTextCustomProps = {
+type ComponentRichTextProps = {
   styles: string;
   children: JSX.Element;
 };
 
-const ComponentRichText = (props: RichTextCustomProps) => {
+const ComponentRichText = (props: ComponentRichTextProps) => {
   return (
     <div className={`component test-3 rich-text ${props.styles}`}>
-        <div className="component-content">
-          <div>{props.children}</div>
-        </div>
+      <div className="component-content">
+        <div>{props.children}</div>
+      </div>
     </div>
   );
 };
