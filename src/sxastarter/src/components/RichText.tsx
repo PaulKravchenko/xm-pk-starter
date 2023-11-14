@@ -14,6 +14,21 @@ export type RichTextProps = {
   fields: Fields;
 };
 
+type RichTextCustomProps = {
+  styles: string;
+  children: JSX.Element;
+};
+
+const ComponentRichText = (props: RichTextCustomProps) => {
+  return (
+    <div className={`component test-3 rich-text ${props.styles}`}>
+        <div className="component-content">
+          <div>{props.children}</div>
+        </div>
+    </div>
+  );
+};
+
 export const Default = (props: RichTextProps): JSX.Element => {
   const { sitecoreContext } = useSitecoreContext();
   const text = props.fields ? (
@@ -29,10 +44,10 @@ export const Default = (props: RichTextProps): JSX.Element => {
     );
   }
   return (
-    <div className={`component test-2 rich-text ${props.params.styles.trimEnd()}`}>
-      <div className="component-content">
+    <ComponentRichText styles={props.params.styles}>
+      <>
         <JssRichText field={props.fields.Text} />
-      </div>
-    </div>
+      </>
+    </ComponentRichText>
   );
 };
