@@ -2,7 +2,7 @@ import React from 'react';
 import { 
   Field, 
   useSitecoreContext,
-  RichText as JssRichText 
+  RichText as JssRichText, 
 } from '@sitecore-jss/sitecore-jss-nextjs';
 
 interface Fields {
@@ -30,7 +30,9 @@ export const Default = (props: RichTextProps): JSX.Element => {
   }
   return (
     <div className={`component rich-text ${props.params.styles.trimEnd()}`}>    
-      <JssRichText field={props.fields.Text} />
+      <div className="component-content">
+        <JssRichText field={props.fields.Text} />
+      </div>
     </div>
   );
 };
