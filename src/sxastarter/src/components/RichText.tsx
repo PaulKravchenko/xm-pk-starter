@@ -21,7 +21,7 @@ export const Default = (props: RichTextProps): JSX.Element => {
   ) : (
     <span className="is-empty-hint">Rich text</span>
   );
-  if (sitecoreContext.pageState !== 'normal') {
+  if (sitecoreContext.pageState === 'normal') {
     return (
       <div className={`component test-1 rich-text ${props.params.styles.trimEnd()}`}>
         <div className="component-content">{text}</div>
