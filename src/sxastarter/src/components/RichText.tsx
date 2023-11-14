@@ -23,13 +23,13 @@ export const Default = (props: RichTextProps): JSX.Element => {
   );
   if (sitecoreContext.pageState !== 'normal') {
     return (
-      <div className={`component rich-text ${props.params.styles.trimEnd()}`}>    
+      <div className={`component rich-text ${props.params.styles.trimEnd()}`}>
         <div className="component-content">{text}</div>
       </div>
     );
   }
   return (
-    <div className={`component rich-text ${props.params.styles.trimEnd()}`}>    
+    <div className={`component rich-text ${props.params.styles.trimEnd()}`}>
       <div className="component-content">
         <JssRichText field={props.fields.Text} />
       </div>
