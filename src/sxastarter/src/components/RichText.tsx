@@ -44,11 +44,11 @@ export const Default = (props: RichTextProps): JSX.Element => {
   }
 
   const field = (
-    props.fields && props.fields.Text
-      ? props.fields.Text
-      : (
+    props.fields && props.fields.Text ?(
+      props.fields.Text
+    ) : (
       <span className="is-empty-hint">Rich text</span>
-      )
+    )
   ) as RichTextField;
 
   return (
