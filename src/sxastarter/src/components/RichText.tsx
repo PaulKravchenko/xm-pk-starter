@@ -23,9 +23,7 @@ type ComponentRichTextProps = {
 const ComponentRichText = (props: ComponentRichTextProps) => {
   return (
     <div className={`component test-3 rich-text ${props.styles}`}>
-      <div className="component-content">
-        {props.children}
-      </div>
+      <div className="component-content">{props.children}</div>
     </div>
   );
 };
@@ -48,7 +46,9 @@ export const Default = (props: RichTextProps): JSX.Element => {
   const field = (
     props.fields && props.fields.Text
       ? props.fields.Text
-      : (<span className="is-empty-hint">Rich text</span>)
+      : (
+      <span className="is-empty-hint">Rich text</span>
+      )
   ) as RichTextField;
 
   return (
