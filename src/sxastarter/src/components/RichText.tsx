@@ -1,13 +1,13 @@
 import React from 'react';
 import {
-  Field,
+  //Field,
   useSitecoreContext,
   RichText as JssRichText,
   RichTextField,
 } from '@sitecore-jss/sitecore-jss-nextjs';
 
 interface Fields {
-  Text: Field<string>;
+  Text: RichTextField;
 }
 
 export type RichTextProps = {
