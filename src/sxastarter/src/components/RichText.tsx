@@ -52,10 +52,8 @@ export const Default = (props: RichTextProps): JSX.Element => {
   ) as RichTextField;
 
   return (
-    <ComponentRichText styles={props.params.styles}>
-      <>
+    <ComponentRichText styles={props.params.styles}>      
         <JssRichText field={field} />
-      </>
     </ComponentRichText>
   );
 };

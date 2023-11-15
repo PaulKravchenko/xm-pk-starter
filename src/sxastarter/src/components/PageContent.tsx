@@ -21,7 +21,7 @@ type ComponentContentProps = {
 
 const ComponentContent = (props: ComponentContentProps) => {
   return (
-    <div className={`component content ${props.styles}`}>
+    <div className={`component test-component-content content ${props.styles}`}>
       <div className="component-content">
         <div className="field-content">{props.children}</div>
       </div>
@@ -34,7 +34,7 @@ export const Default = (props: PageContentProps): JSX.Element => {
 
   if (!(props.fields && props.fields.Content) && !sitecoreContext?.route?.fields?.Content) {
     return (
-      <div className={`component content ${props.params.styles}`}>
+      <div className={`component content test-default ${props.params.styles}`}>
         <div className="component-content">
           <div className="field-content">[Content]</div>
         </div>
