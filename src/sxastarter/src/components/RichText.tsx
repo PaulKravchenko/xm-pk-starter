@@ -3,6 +3,7 @@ import {
   Field,
   useSitecoreContext,
   RichText as JssRichText,
+  RichTextField,
 } from '@sitecore-jss/sitecore-jss-nextjs';
 
 interface Fields {
@@ -23,7 +24,7 @@ const ComponentRichText = (props: ComponentRichTextProps) => {
   return (
     <div className={`component test-3 rich-text ${props.styles}`}>
       <div className="component-content">
-        <div>{props.children}</div>
+        {props.children}
       </div>
     </div>
   );
@@ -43,10 +44,17 @@ export const Default = (props: RichTextProps): JSX.Element => {
       </div>
     );
   }
+
+  const field = (
+    props.fields && props.fields.Text
+      ? props.fields.Text
+      : (<span className="is-empty-hint">Rich text</span>)
+  ) as RichTextField;
+
   return (
     <ComponentRichText styles={props.params.styles}>
       <>
-        <JssRichText field={props.fields.Text} />
+        <JssRichText field={field} />
       </>
     </ComponentRichText>
   );
