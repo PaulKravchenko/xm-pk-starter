@@ -37,7 +37,7 @@ export const BreadcrumbComponent = ({
 
   const ancestorLinks = item.ancestors
     ?.slice()
-    .sort((a, b) => (a.url.value.length < b.url.value.length ? -1 : 1));  
+    .sort((a, b) => (a.url.value.length < b.url.value.length ? -1 : 1));
 
   return (
     <div className="breadcrumb container py-5">
@@ -66,13 +66,10 @@ const BreadcrumbAnchor = ({
 }): JSX.Element => {
   return (
     <div className="flex">
-      {showSeparator && (<span className="separator">{`->`}</span>)}
+      {showSeparator && <span className="separator">{`->`}</span>}
 
       {renderAsLink ? (
-        <a
-          href={link.url.value}
-          className="no-underline"
-        >
+        <a href={link.url.value} className="no-underline">
           {link.navigationTitle?.value || link.title?.value || link.name}
         </a>
       ) : (
