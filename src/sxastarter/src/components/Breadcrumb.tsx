@@ -36,7 +36,6 @@ export const BreadcrumbComponent = ({
   fields: {
     data: { item },
   },
-  params,
 }: BreadcrumbProps): JSX.Element | null => {
   if (!item) return null;
 
