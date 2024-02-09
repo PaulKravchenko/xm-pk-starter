@@ -1,0 +1,42 @@
+.breadcrumb {
+    .flex {
+        display: inline-flex;
+        flex-direction: row;
+    }
+
+    .items-center {
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+    }
+
+    a, span {
+        height: 40px;
+        font-size: 2rem;
+        padding: 0 5px;
+    }
+
+    a {
+        color: gray;
+
+        &:hover {
+            color: darkgray;
+        }
+    }
+
+    span {
+        font-weight: 700;
+    }
+
+    .text-black {
+        color: black;
+    }
+
+    .separator {
+        font-weight: 500;
+    }
+
+    .no-underline {
+        text-decoration: none;
+    }
+}

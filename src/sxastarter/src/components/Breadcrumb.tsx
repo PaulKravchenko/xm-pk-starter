@@ -28,10 +28,6 @@ export type BreadcrumbProps = {
   fields: BreadcrumbFields;
 };
 
-/**
- * Design: https://www.figma.com/file/z6f0JdiR52fvzLGjrdKYyJ/Beyond-Blue---Digital-Style-Guide-(v12.10.2023)?type=design&node-id=4-1829&mode=design&t=dzcjzwSe6SlR7Qrb-0
- */
-
 export const BreadcrumbComponent = ({
   fields: {
     data: { item },
@@ -41,9 +37,7 @@ export const BreadcrumbComponent = ({
 
   const ancestorLinks = item.ancestors
     ?.slice()
-    .sort((a, b) => (a.url.value.length < b.url.value.length ? -1 : 1));
-
-  const parentLink = ancestorLinks?.slice(-1)[0];
+    .sort((a, b) => (a.url.value.length < b.url.value.length ? -1 : 1));  
 
   return (
     <div className="breadcrumb container py-5">
@@ -57,21 +51,6 @@ export const BreadcrumbComponent = ({
           </>
         )}
       </div>
-      {parentLink && (
-        <div className="md:hidden">
-          <div className="flex items-center gap-2">
-            <a
-              href={parentLink.url.value}
-              className="inline-flex gap-2 pr-1 text-sm font-semibold text-black no-underline hover:text-mid-blue-400"
-            >
-              {` -> `}
-              <span>
-                {parentLink.navigationTitle?.value || parentLink.title?.value || parentLink.name}
-              </span>
-            </a>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
@@ -86,18 +65,18 @@ const BreadcrumbAnchor = ({
   renderAsLink?: boolean;
 }): JSX.Element => {
   return (
-    <div className="flex items-center gap-6">
-      {showSeparator && ` -> `}
+    <div className="flex">
+      {showSeparator && (<span className="separator">{`->`}</span>)}
 
       {renderAsLink ? (
         <a
           href={link.url.value}
-          className="text-sm text-neutral-500 no-underline hover:text-mid-blue-400"
+          className="no-underline"
         >
           {link.navigationTitle?.value || link.title?.value || link.name}
         </a>
       ) : (
-        <span className="text-sm font-semibold text-black">
+        <span className="text-black">
           {link.navigationTitle?.value || link.title?.value || link.name}
         </span>
       )}
