@@ -10,17 +10,13 @@ import { getItems, watchItems } from './utils';
   COMPONENT FACTORY GENERATION
   Generates the `/src/temp/componentFactory.ts` file, which maps JSS React components
   to Sitecore renderings.
-
   The component factory is a mapping between a string name and a React component instance.
   When the Sitecore Layout service returns a layout definition, it returns named components.
   This mapping is used to construct the component hierarchy for the layout.
-
   Generating the componentFactory is optional, and it can be maintained manually if preferred.
-
   The default convention uses the component's filename (without the extension) as the component
   name. For example, the file `/components/ComponentName.ts` would map to component `ComponentName`.
   This can be customized in writeComponentFactory().
-
   This script supports two modes. In default mode, the component factory file is written once.
   In watch mode, the component factory source folder is watched, and componentFactory.ts is
   regenerated whenever files are added or deleted. Run in watch mode by passing a `--watch` argument
@@ -28,7 +24,7 @@ import { getItems, watchItems } from './utils';
 */
 
 const componentFactoryPath = path.resolve('src/temp/componentFactory.ts');
-const componentRootPaths = ['src/components', 'src/custom-components'];
+const componentRootPath = 'src/components';
 
 const isWatch = process.argv.some((arg) => arg === '--watch');
 
@@ -40,11 +36,9 @@ const isWatch = process.argv.some((arg) => arg === '--watch');
  * removed components at runtime.
  */
 function watchComponentFactory() {
-  componentRootPaths.forEach(function(componentRootPath) {
-    console.log(`Watching for changes to component factory sources in ${componentRootPath}...`);
+  console.log(`Watching for changes to component factory sources in ${componentRootPath}...`);
 
-    watchItems(componentRootPath, writeComponentFactory);
-  });
+  watchItems(componentRootPath, writeComponentFactory);
 }
 
 /**
@@ -71,7 +65,7 @@ function writeComponentFactory() {
    *  }
    */
   const packages: PackageDefinition[] = [];
-  const components = getComponentList(componentRootPaths);
+  const components = getComponentList(componentRootPath);
 
   components.unshift(...packages);
 
@@ -82,19 +76,16 @@ function writeComponentFactory() {
   });
 }
 
-function getComponentList(paths: string[]): (PackageDefinition | ComponentFile)[] {  
-  const components = paths.flatMap(function (path){
-      return getItems<PackageDefinition | ComponentFile>({
-      path,
-      resolveItem: (path, name) => ({
-        path: `${path}/${name}`,
-        componentName: name,
-        moduleName: name.replace(/[^\w]+/g, ''),
-      }),
-      cb: (name) => console.debug(`Registering JSS component ${name}`),
-    });    
+function getComponentList(path: string): (PackageDefinition | ComponentFile)[] {
+  const components = getItems<PackageDefinition | ComponentFile>({
+    path,
+    resolveItem: (path, name) => ({
+      path: `${path}/${name}`,
+      componentName: name,
+      moduleName: name.replace(/[^\w]+/g, ''),
+    }),
+    cb: (name) => console.debug(`Registering JSS component ${name}`),
   });
- 
 
   return components;
 }
