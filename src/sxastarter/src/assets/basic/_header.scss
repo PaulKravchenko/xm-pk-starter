@@ -5,14 +5,17 @@
 .prod-mode {
   #header {
     display: flex;
-    flex-direction: column;
-    padding-bottom: 50px;
+
+    @include respond-to(mobile-large) {
+      padding-bottom: 0;
+      flex-direction: column-reverse;
+    }
   }
 }
 
 header {
   #header {
-    .rich-text {
+    .bs-title {
       padding-left: 50px;
 
       h1 {
@@ -23,15 +26,16 @@ header {
         margin: 0;
       }
     }
-    
-    @include respond-to(all-mobile) {
+
+    @include respond-to(mobile-large) {
       padding-bottom: 0;
       padding-top: 0;
       flex-direction: column-reverse;
 
-      .rich-text {
+      .bs-title {
         padding-left: 0;
         text-align: center;
+        margin-top: -5px;
 
         h1 {
           font-weight: 500;

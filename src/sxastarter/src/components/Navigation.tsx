@@ -50,10 +50,15 @@ const getLinkField = (props: NavigationProps): LinkField => ({
 export const Default = (props: NavigationProps): JSX.Element => {
   const [isOpenMenu, openMenu] = useState(false);
   const { sitecoreContext } = useSitecoreContext();
+  const styles =
+    props.params != null
+      ? `${props.params.GridParameters ?? ''} ${props.params.Styles ?? ''}`.trimEnd()
+      : '';
+  const id = props.params != null ? props.params.RenderingIdentifier : null;
 
   if (!Object.values(props.fields).length) {
     return (
-      <div className={`component navigation`}>
+      <div className={`component navigation ${styles}`} id={id ? id : undefined}>
         <div className="component-content">[Navigation]</div>
       </div>
     );
@@ -81,11 +86,9 @@ export const Default = (props: NavigationProps): JSX.Element => {
         relativeLevel={1}
       />
     ));
-  const styles =
-    props.params != null ? `${props.params.GridParameters} ${props.params.Styles}` : null;
 
   return (
-    <div className={`component navigation ${styles}`}>
+    <div className={`component navigation ${styles}`} id={id ? id : undefined}>
       <label className="menu-mobile-navigate-wrapper">
         <input
           type="checkbox"
@@ -106,6 +109,10 @@ export const Default = (props: NavigationProps): JSX.Element => {
 
 const NavigationList = (props: NavigationProps) => {
   const { sitecoreContext } = useSitecoreContext();
+  const [active, setActive] = useState(false);
+  const classNameList = `${props.fields.Styles.concat('rel-level' + props.relativeLevel).join(
+    ' '
+  )}`;
 
   let children: JSX.Element[] = [];
   if (props.fields.Children && props.fields.Children.length) {
@@ -120,12 +127,11 @@ const NavigationList = (props: NavigationProps) => {
   }
 
   return (
-    <li
-      className={props.fields.Styles.concat('rel-level' + props.relativeLevel).join(' ')}
-      key={props.fields.Id}
-      tabIndex={0}
-    >
-      <div className="navigation-title">
+    <li className={`${classNameList} ${active ? 'active' : ''}`} key={props.fields.Id} tabIndex={0}>
+      <div
+        className={`navigation-title ${children.length ? 'child' : ''}`}
+        onClick={() => setActive(() => !active)}
+      >
         <Link
           field={getLinkField(props)}
           editable={sitecoreContext.pageEditing}
