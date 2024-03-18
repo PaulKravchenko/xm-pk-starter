@@ -21,6 +21,7 @@ export const Default = (props: ComponentProps): JSX.Element => {
     props.params.Styles6,
     props.params.Styles7,
     props.params.Styles8,
+    props.params.Styles9,
   ];
   const enabledPlaceholders = props.params.EnabledPlaceholders.split(',');
   const id = props.params.RenderingIdentifier;
