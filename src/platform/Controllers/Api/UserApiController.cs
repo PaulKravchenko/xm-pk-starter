@@ -78,6 +78,10 @@ namespace XmCloudSXAStarter.Controllers.Api
                             }
                         }
                     }
+                    else
+                    {
+                        return Content(System.Net.HttpStatusCode.Conflict, $"User with name '{userModel.Name}' already exists");
+                    }
                 }
             }
 
