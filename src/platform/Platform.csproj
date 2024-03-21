@@ -72,6 +72,9 @@
     <None Include="README.md" />
     <None Include="web.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\Api\UserApiController.cs" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
