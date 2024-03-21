@@ -31,16 +31,31 @@ namespace XmCloudSXAStarter.Controllers.Api
         [Route("create")]
         public IHttpActionResult CreateUser([FromBody] UserModel userModel)
         {
+            if (userModel == null)
+            {
+                return Json("userModel is empty");
+            }
+            if (string.IsNullOrEmpty(userModel.Name))
+            {
+                return Json("userModel.Name is empty");
+            }
             using (new SecurityDisabler())
             {                
                 if (!Sitecore.Security.Accounts.User.Exists(userModel.Name))
                 {
                     var user = Sitecore.Security.Accounts.User.Create(userModel.Name, "Password12345!");
-                    foreach (var role in userModel.Roles)
+                    if (user != null)
                     {
-                        if (Role.Exists(role))
+                        if (!userModel.Roles.Any())
                         {
-                            user.Roles.Add(Role.FromName(role));
+                            return Json("userModel.Roles is empty");
+                        }
+                        foreach (var role in userModel.Roles)
+                        {
+                            if (Role.Exists(role))
+                            {
+                                user.Roles.Add(Role.FromName(role));
+                            }
                         }
                     }
                 }
