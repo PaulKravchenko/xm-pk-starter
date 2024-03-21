@@ -98,7 +98,7 @@ namespace XmCloudSXAStarter.Controllers.Api
                 responseModel.Message = "User was successfully created";
             }
 
-            return Content(System.Net.HttpStatusCode.Created, JsonConvert.SerializeObject(responseModel));
+            return Content(System.Net.HttpStatusCode.Created, JsonConvert.SerializeObject(responseModel, Formatting.Indented));
         }
     }
 }
