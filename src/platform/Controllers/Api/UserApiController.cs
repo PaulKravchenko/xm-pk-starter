@@ -6,6 +6,7 @@ using System.Web.Http;
 using Sitecore.Security.Accounts;
 using Sitecore.SecurityModel;
 using XmCloudSXAStarter.Models;
+using Newtonsoft.Json;
 
 namespace XmCloudSXAStarter.Controllers.Api
 {
@@ -33,12 +34,13 @@ namespace XmCloudSXAStarter.Controllers.Api
         {
             if (userModel == null)
             {
-                return Json("userModel is empty");
+                return Content(System.Net.HttpStatusCode.BadRequest, "Body JSON is empty");
             }
             if (string.IsNullOrEmpty(userModel.Name))
             {
-                return Json("userModel.Name is empty");
+                return Content(System.Net.HttpStatusCode.BadRequest, "Body JSON misses user's name");
             }
+            var warnings = new List<string>();
             using (new SecurityDisabler())
             {                
                 if (!Sitecore.Security.Accounts.User.Exists(userModel.Name))
@@ -46,9 +48,27 @@ namespace XmCloudSXAStarter.Controllers.Api
                     var user = Sitecore.Security.Accounts.User.Create(userModel.Name, "Password12345!");
                     if (user != null)
                     {
+                        if (string.IsNullOrEmpty(userModel.FullName))
+                        {
+                            warnings.Add("Body JSON misses user's FullName");
+                        }
+                        else
+                        {
+                            user.Profile.FullName = userModel.FullName;
+                        }
+
+                        if (string.IsNullOrEmpty(userModel.Email))
+                        {
+                            warnings.Add("Body JSON misses user's Email");
+                        }
+                        else
+                        {
+                            user.Profile.Email = userModel.Email;
+                        }
+
                         if (!userModel.Roles.Any())
                         {
-                            return Json("userModel.Roles is empty");
+                            warnings.Add("Body JSON misses roles collection");
                         }
                         foreach (var role in userModel.Roles)
                         {
@@ -61,7 +81,20 @@ namespace XmCloudSXAStarter.Controllers.Api
                 }
             }
 
-            return Json("OK");
+            var responseModel = new ResponseModel();
+
+            if (warnings.Any())
+            {
+                responseModel.Message = "User was created with some warnings";
+                responseModel.Warnings = warnings.ToArray();
+
+            }
+            else 
+            {
+                responseModel.Message = "User was successfully created";
+            }
+
+            return Content(System.Net.HttpStatusCode.Created, JsonConvert.SerializeObject(responseModel));
         }
     }
 }
