@@ -55,6 +55,7 @@ namespace XmCloudSXAStarter.Controllers.Api
                         else
                         {
                             user.Profile.FullName = userModel.FullName;
+                            user.Profile.Save();
                         }
 
                         if (string.IsNullOrEmpty(userModel.Email))
@@ -64,6 +65,7 @@ namespace XmCloudSXAStarter.Controllers.Api
                         else
                         {
                             user.Profile.Email = userModel.Email;
+                            user.Profile.Save();
                         }
 
                         if (!userModel.Roles.Any())
