@@ -24,10 +24,10 @@
           },
           "reindex": {
             "indexNames": []
+          },
+          "scsModules": {
+            "modules": ["Security"]
           }
         }
-        },
-    "scsModules": {
-          "modules": ["Security"]
-        }
+      }    
     }
