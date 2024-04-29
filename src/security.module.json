@@ -1,0 +1,10 @@
+{
+    "$schema": "../.sitecore/schemas/ModuleFile.schema.json",
+    "namespace": "Security",
+    "roles": [
+        {
+            "domain": "sitecore",
+            "pattern": "My Test*"
+        }
+    ]
+}

@@ -26,5 +26,8 @@
             "indexNames": []
           }
         }
+        },
+    "scsModules": {
+          "modules": ["Security"]
         }
     }
