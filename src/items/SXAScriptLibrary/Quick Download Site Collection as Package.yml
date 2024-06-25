@@ -1,30 +1,39 @@
 ﻿---
-ID: "dffee92b-0441-45a4-9207-67810b72bd46"
-Parent: "895e25c4-12b2-4b2c-8233-82f3b79eef53"
-Template: "bc71d442-3e4f-46ba-887c-746e54f9bb83"
-Path: /sitecore/system/Settings/Services/Rendering Hosts/Default
+ID: "44e1bb35-a7df-48a8-99d1-1e97eca49343"
+Parent: "6c0e2504-69e0-43c3-a09a-1240a61f49e2"
+Template: "dd22f1b3-bd87-4db2-9e7d-f7a496888d43"
+Path: "/sitecore/system/Modules/PowerShell/Script Library/SXA/SXA - Multisite/Content Editor/Context Menu/Quick Download Site Collection as Package"
 SharedFields:
-- ID: "3121c257-53cf-464a-b736-98b418876057"
-  Hint: AppName
-  Value: Default
-- ID: "94470b31-e282-4d8d-bc54-85689efb294c"
-  Hint: ServerSideRenderingEngineConfigUrl
-  Value: "https://xmc-eh-29ikerr9mtnti4nv9qve34.sitecorecloud.io:443/api/editing/config"
-- ID: "9c6106ea-7a5a-48e2-8cad-f0f693b1e2d4"
-  Hint: __Read Only
-  Value: 1
-- ID: "e32c1801-79b3-4fc1-a9c4-3c6e6c2968ae"
-  Hint: ServerSideRenderingEngineApplicationUrl
-  Value: "https://xmc-eh-29ikerr9mtnti4nv9qve34.sitecorecloud.io/"
-- ID: "fc76919b-0d7c-4732-865d-2af795fb38a4"
-  Hint: ServerSideRenderingEngineEndpointUrl
-  Value: "https://xmc-eh-29ikerr9mtnti4nv9qve34.sitecorecloud.io:443/api/editing/render"
+- ID: "06d5295c-ed2f-4a54-9bf2-26228d113318"
+  Hint: __Icon
+  Value: office/32x32/office_building2.png
+- ID: "1c76313e-3c8c-4807-a826-135d10c39299"
+  Hint: ShowRule
+  Value: |
+    <ruleset>
+      <rule
+        uid="{2960132F-FACE-4DFB-9131-6CAB0F9545C2}">
+        <conditions>
+          <condition
+            id="{D0810F9D-734C-452D-BBB6-4730368D68F1}"
+            uid="FE63DD20C99244D39F52DCDAED5F564B"
+            templateid="{78180355-F0A2-4161-A34C-3069A9E17539}" />
+        </conditions>
+      </rule>
+    </ruleset>
+- ID: "b1a94ff0-6897-47c0-9c51-aa6acb80b1f0"
+  Hint: Script
+  Value: |
+    Import-Function Get-TenantPackage
+    
+    $tenantItem = Get-Item .
+    Get-TenantPackage $tenantItem > $null
 Languages:
 - Language: "de-DE"
   Fields:
   - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
     Hint: __Display name
-    Value: Default
+    Value: Schneller Download Tenant als Paket
   Versions:
   - Version: 1
     Fields:
@@ -55,19 +64,19 @@ Languages:
     Fields:
     - ID: "25bed78c-4957-4165-998a-ca1b52f67497"
       Hint: __Created
-      Value: 20240521T020125Z
+      Value: 20170512T080810Z
     - ID: "5dd74568-4d4b-44c1-b513-0af5f4cda34f"
       Hint: __Created by
       Value: |
         sitecore\Admin
     - ID: "8cdc337e-a112-42fb-bbb4-4143751e123f"
       Hint: __Revision
-      Value: "986522ec-d58b-403f-b3c6-aa2a94164d53"
+      Value: "d745ed56-2a5e-4d61-a40f-6ea6f6cdd105"
 - Language: "ja-JP"
   Fields:
   - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
     Hint: __Display name
-    Value: デフォルト
+    Value: クイック ダウンロード テナント パッケージ
   Versions:
   - Version: 1
     Fields:
@@ -96,7 +105,7 @@ Languages:
   Fields:
   - ID: "b5e02ad9-d56f-4c41-a065-a133db87bdeb"
     Hint: __Display name
-    Value: 默认
+    Value: 快速下载租户作为包
   Versions:
   - Version: 1
     Fields:

@@ -3,28 +3,28 @@ Role: |
   sitecore\My Test Author
 MemberOf:
   Role: |
-    sitecore\Sitecore Client Advanced Publishing
-  Role: |
-    sitecore\Forms Editor
-  Role: |
-    sitecore\Analytics Content Profiling
-  Role: |
-    sitecore\Designer
-  Role: |
-    sitecore\Analytics Personalization
-  Role: |
-    sitecore\Analytics Reporting
+    sitecore\Sitecore Client Bucket Management
   Role: |
     sitecore\Analytics Management Reporting
   Role: |
-    sitecore\Sitecore Client Bucket Management
-  Role: |
     sitecore\Author
-  Role: |
-    sitecore\Forms Publisher
   Role: |
     sitecore\Analytics Advanced Testing
   Role: |
-    sitecore\Sitecore Client Publishing
+    sitecore\Forms Publisher
+  Role: |
+    sitecore\Sitecore Client Advanced Publishing
+  Role: |
+    sitecore\Analytics Personalization
+  Role: |
+    sitecore\Analytics Content Profiling
   Role: |
     sitecore\Forms Data Administrator
+  Role: |
+    sitecore\Designer
+  Role: |
+    sitecore\Forms Editor
+  Role: |
+    sitecore\Analytics Reporting
+  Role: |
+    sitecore\Sitecore Client Publishing
