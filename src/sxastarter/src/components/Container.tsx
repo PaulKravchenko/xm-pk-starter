@@ -27,7 +27,7 @@ const DefaultContainer = (props: ComponentProps): JSX.Element => {
   if (backgroundImage) {
     const prefix = `${sitecoreContext.pageState !== 'normal' ? '/sitecore/shell/-/' : ''}media/`;
     const hostName = `${
-      sitecoreContext.pageState !== 'normal' ? process.env.GRAPH_QL_ENDPOINT : ''
+      sitecoreContext.pageState === 'normal' ? process.env.GRAPH_QL_ENDPOINT : ''
     }`;
     backgroundImage = `${backgroundImage?.match(BACKGROUND_REG_EXP)?.pop()?.replace(/-/gi, '')}`;
     backgroundStyle = {
