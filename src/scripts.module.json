@@ -1,0 +1,13 @@
+{
+    "$schema": "../.sitecore/schemas/ModuleFile.schema.json",
+    "namespace": "Scripts",
+    "items": {
+        "includes": [
+            {
+                "name": "DTPScriptLibrary",
+                "path": "/sitecore/system/Modules/PowerShell/Script Library/DTP",
+                "scope": "itemAndDescendants"
+            }       
+        ]
+    }
+}
