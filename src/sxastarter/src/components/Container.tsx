@@ -25,10 +25,13 @@ const DefaultContainer = (props: ComponentProps): JSX.Element => {
   let backgroundStyle: { [key: string]: string } = {};
 
   if (backgroundImage) {
-    const prefix = `${sitecoreContext.pageState !== 'normal' ? '/sitecore/shell' : ''}/-/media/`;
+    const prefix = `${sitecoreContext.pageState !== 'normal' ? '/sitecore/shell/-/' : ''}media/`;
+    const hostName = `${
+      sitecoreContext.pageState !== 'normal' ? process.env.GRAPH_QL_ENDPOINT : ''
+    }`;
     backgroundImage = `${backgroundImage?.match(BACKGROUND_REG_EXP)?.pop()?.replace(/-/gi, '')}`;
     backgroundStyle = {
-      backgroundImage: `url('${prefix}${backgroundImage}')`,
+      backgroundImage: `url('${hostName}${prefix}${backgroundImage}')`,
     };
   }
 
